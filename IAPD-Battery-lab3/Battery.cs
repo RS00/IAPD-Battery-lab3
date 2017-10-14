@@ -22,6 +22,20 @@ namespace IAPD_Battery_lab3
             return result;
         }
 
+        public string getTime()
+        {
+            if (this.getPowerType() == "AC")
+                return "-";
+            WMIService wmi = new WMIService();
+            ManagementObjectCollection collection = wmi.getObject("Win32_Battery");
+            string result = "";
+            foreach (ManagementObject obj in collection)
+            {
+                result += obj["EstimatedRunTime"];
+            }
+            return TimeSpan.FromMinutes(Double.Parse(result)).ToString(@"hh\:mm");
+        }
+
         public string getPowerType()
         {
             WMIService wmi = new WMIService();

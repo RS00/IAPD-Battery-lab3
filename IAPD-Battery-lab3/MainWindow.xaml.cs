@@ -25,6 +25,15 @@ namespace IAPD_Battery_lab3
         public MainWindow()
         {
             InitializeComponent();
+            initText();
+        }
+
+        private void initText()
+        {
+            Battery battery = new Battery();
+            PowerType.Text = battery.getPowerType();
+            Charge.Text = battery.getChargeLevel();
+            TimeLeft.Text = battery.getTime();
         }
     }
 }
