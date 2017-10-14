@@ -31,6 +31,13 @@
                    >
             Power type:
         </TextBlock>
+        <TextBlock Name="PowerType"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="Arvo"
+                   FontSize="18"/>
         <TextBlock Grid.Row="1"
                    Grid.Column="1"
                    VerticalAlignment="Center"
@@ -40,6 +47,13 @@
                    >
             Charge:
         </TextBlock>
+        <TextBlock Name ="Charge"
+                   Grid.Row="1"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="Arvo"
+                   FontSize="18"/>
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
                    VerticalAlignment="Center"
@@ -49,5 +63,12 @@
                    >
             Time left:
         </TextBlock>
+        <TextBlock Name="TimeLeft"
+                   Grid.Row="2"
+                   Grid.Column="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   FontFamily="Arvo"
+                   FontSize="18"/>
     </Grid>
 </Window>
