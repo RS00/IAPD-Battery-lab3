@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Management;
+using IAPD_Battery_lab3;
 
 namespace IAPD_Battery_lab3
 {

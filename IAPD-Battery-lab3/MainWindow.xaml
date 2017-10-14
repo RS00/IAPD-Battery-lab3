@@ -5,8 +5,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IAPD_Battery_lab3"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Battery Info" Height="300" Width="430" ResizeMode="NoResize">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="25*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Grid.RowSpan="3">
+            <Image.Source>
+                <BitmapImage UriSource="pack://application:,,,/IAPD-Battery-lab3;component/Resources/power.png"></BitmapImage>
+            </Image.Source>
+        </Image>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontFamily="Arvo"
+                   FontSize="18"
+                   >
+            Power type:
+        </TextBlock>
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontFamily="Arvo"
+                   FontSize="18"
+                   >
+            Charge:
+        </TextBlock>
+        <TextBlock Grid.Row="2"
+                   Grid.Column="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   FontFamily="Arvo"
+                   FontSize="18"
+                   >
+            Time left:
+        </TextBlock>
     </Grid>
 </Window>
