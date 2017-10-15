@@ -10,10 +10,10 @@ namespace IAPD_Battery_lab3
 {
     class Battery
     {
-        public string getChargeLevel()
+        public static string getChargeLevel()
         {
             WMIService wmi = new WMIService();
-            ManagementObjectCollection collection = wmi.getObject("Win32_Battery");
+            ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
             string result = "";
             foreach (ManagementObject obj in collection)
             {
@@ -22,12 +22,12 @@ namespace IAPD_Battery_lab3
             return result;
         }
 
-        public string getTime()
+        public static string getTime()
         {
-            if (this.getPowerType() == "AC")
+            if (getPowerType() == "AC")
                 return "-";
             WMIService wmi = new WMIService();
-            ManagementObjectCollection collection = wmi.getObject("Win32_Battery");
+            ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
             string result = "";
             foreach (ManagementObject obj in collection)
             {
@@ -36,10 +36,10 @@ namespace IAPD_Battery_lab3
             return TimeSpan.FromMinutes(Double.Parse(result)).ToString(@"hh\:mm");
         }
 
-        public string getPowerType()
+        public static string getPowerType()
         {
             WMIService wmi = new WMIService();
-            ManagementObjectCollection collection = wmi.getObject("Win32_Battery");
+            ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
             string result = "";
             foreach (ManagementObject obj in collection)
             {
