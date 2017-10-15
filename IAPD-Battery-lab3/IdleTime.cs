@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace IAPD_Battery_lab3
 {
+    internal struct LASTINPUTINFO
+    {
+        public uint cbSize;
+
+        public uint dwTime;
+    }
+
     class IdleTime
     {
         [DllImport("User32.dll")]
