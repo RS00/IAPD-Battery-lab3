@@ -26,9 +26,6 @@ namespace IAPD_Battery_lab3
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        private static extern void mouse_event(IntPtr dwFlags, uint dx, uint dy, uint dwData, UIntPtr dwExtraInfo);
-
         private const int MOVE = 0x0001;
         private const int HWND_BROADCAST = 0xffff;
         private const int WM_SYSCOMMAND = 0x0112;
