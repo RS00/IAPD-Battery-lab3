@@ -14,9 +14,15 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Management;
 using IAPD_Battery_lab3;
+using Microsoft.Win32;
+using System.Timers;
+using System.Windows.Threading;
+using System.Runtime.InteropServices;
 
 namespace IAPD_Battery_lab3
 {
+
+    
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
@@ -26,14 +32,56 @@ namespace IAPD_Battery_lab3
         {
             InitializeComponent();
             initText();
+            createTimer();
+            /*initBrightness();
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;*/
         }
+
+        private void createTimer()
+        {
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Tick += new EventHandler(timerTick);
+            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Start();
+        }
+
+        private void timerTick(object sender, EventArgs e)
+        {
+            initText();
+            if (IdleTime.GetIdleTime() > 10000 && PowerType.Text == "Battery")
+                Monitor.Fade();
+        }
+
 
         private void initText()
         {
-            Battery battery = new Battery();
-            PowerType.Text = battery.getPowerType();
-            Charge.Text = battery.getChargeLevel();
-            TimeLeft.Text = battery.getTime();
+            PowerType.Text = Battery.getPowerType();
+            Charge.Text = Battery.getChargeLevel();
+            TimeLeft.Text = Battery.getTime();
         }
+
+        /*private static void initBrightness()
+        {
+            if (Battery.getPowerType() == "AC")
+            {
+                Monitor.SetBrightness(100);
+            }
+            else
+            {
+                Monitor.SetBrightness(20);
+            }
+        }*/
+
+
+
+        /*static void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        {
+            if (e.Mode == PowerModes.StatusChange)
+            {
+                initBrightness();
+            }
+        }*/
+
+        
     }
 }

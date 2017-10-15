@@ -37,7 +37,6 @@ namespace IAPD_Battery_lab3
         public static void Fade()
         {
             SendMessage((IntPtr)HWND_BROADCAST, WM_SYSCOMMAND, SC_MONITORPOWER, 2);
-            mouse_event((IntPtr)MOVE, 0, 0, 0, UIntPtr.Zero);
         }
     }
 }
