@@ -28,13 +28,23 @@ namespace IAPD_Battery_lab3
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private uint fadeTime = 60;
+        private uint oldFadeTime;
         public MainWindow()
         {
             InitializeComponent();
             initText();
             createTimer();
+            oldFadeTime = PowerManagement.getVideoTimeoutDC();
+            PowerManagement.setNewVideoTimeoutDC(fadeTime);
             /*initBrightness();
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;*/
+        }
+
+        ~MainWindow()
+        {
+            PowerManagement.setNewVideoTimeoutDC(oldFadeTime);
         }
 
         private void createTimer()
@@ -48,8 +58,6 @@ namespace IAPD_Battery_lab3
         private void timerTick(object sender, EventArgs e)
         {
             initText();
-            if (IdleTime.GetIdleTime() > 10000 && PowerType.Text == "Battery")
-                Monitor.Fade();
         }
 
 

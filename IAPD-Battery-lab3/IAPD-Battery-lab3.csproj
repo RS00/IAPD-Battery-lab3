@@ -57,8 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Battery.cs" />
-    <Compile Include="IdleTime.cs" />
-    <Compile Include="Monitor.cs" />
+    <Compile Include="PowerManagement.cs" />
     <Compile Include="Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
