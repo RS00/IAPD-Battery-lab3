@@ -11,13 +11,14 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="40*"></ColumnDefinition>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
             <ColumnDefinition Width="25*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Image Grid.RowSpan="3">
+        <Image Grid.RowSpan="4">
             <Image.Source>
                 <BitmapImage UriSource="pack://application:,,,/IAPD-Battery-lab3;component/Resources/power.png"></BitmapImage>
             </Image.Source>
@@ -70,5 +71,31 @@
                    HorizontalAlignment="Center"
                    FontFamily="Arvo"
                    FontSize="18"/>
+        <TextBlock
+            Grid.Row="3"
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontFamily="Arvo"
+            FontSize="13">
+            Monitor fade time (DC)
+        </TextBlock>
+        <ComboBox
+            Name="fadeCombo"
+            Grid.Row="3"
+            Grid.Column="2"
+            VerticalAlignment="Center"
+            SelectedIndex="0"
+            SelectionChanged="fadeCombo_SelectionChanged">
+            <ComboBoxItem >10</ComboBoxItem>
+            <ComboBoxItem>20</ComboBoxItem>
+            <ComboBoxItem>30</ComboBoxItem>
+            <ComboBoxItem>40</ComboBoxItem>
+            <ComboBoxItem>50</ComboBoxItem>
+            <ComboBoxItem>60</ComboBoxItem>
+            <ComboBoxItem>120</ComboBoxItem>
+            <ComboBoxItem>300</ComboBoxItem>
+            <ComboBoxItem>600</ComboBoxItem>
+        </ComboBox>
     </Grid>
 </Window>

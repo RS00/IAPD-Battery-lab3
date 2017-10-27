@@ -28,18 +28,24 @@ namespace IAPD_Battery_lab3
     /// </summary>
     public partial class MainWindow : Window
     {
-
-        private uint fadeTime = 60;
-        private uint oldFadeTime;
+        private uint oldFadeTime = 0;
         public MainWindow()
         {
+            oldFadeTime = PowerManagement.getVideoTimeoutDC();
             InitializeComponent();
             initText();
             createTimer();
-            oldFadeTime = PowerManagement.getVideoTimeoutDC();
-            PowerManagement.setNewVideoTimeoutDC(fadeTime);
-            /*initBrightness();
-            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;*/
+            if (PowerType.Text == "Battery")
+            {
+                ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
+                PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+            }
+            else
+            {
+                fadeCombo.IsEnabled = false;
+            }
+            //initBrightness();
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
         }
 
         ~MainWindow()
@@ -68,6 +74,16 @@ namespace IAPD_Battery_lab3
             TimeLeft.Text = Battery.getTime();
         }
 
+        private void fadeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PowerType.Text == "Battery")
+            {
+                fadeCombo.IsEnabled = true;
+                ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
+                PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+            }
+        }
+
         /*private static void initBrightness()
         {
             if (Battery.getPowerType() == "AC")
@@ -82,14 +98,24 @@ namespace IAPD_Battery_lab3
 
 
 
-        /*static void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
+        void SystemEvents_PowerModeChanged(object sender, Microsoft.Win32.PowerModeChangedEventArgs e)
         {
             if (e.Mode == PowerModes.StatusChange)
             {
-                initBrightness();
+                if (Battery.getPowerType() == "Battery")
+                {
+                    fadeCombo.IsEnabled = true;
+                    ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
+                    PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+                }
+                else
+                {
+                    fadeCombo.IsEnabled = false;
+                    PowerManagement.setNewVideoTimeoutDC(oldFadeTime);
+                }
             }
-        }*/
+        }
 
-        
+
     }
 }
