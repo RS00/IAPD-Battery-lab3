@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 
-namespace IAPD_Battery_lab3
+namespace BatteryInfo
 {
     class WMIService
     {
@@ -13,14 +13,15 @@ namespace IAPD_Battery_lab3
 
         public WMIService()
         {
-            connectToWMI();
+            ConnectToWMI();
         }
 
-        private void connectToWMI()
+        private void ConnectToWMI()
         {
             ManagementScope scope = new ManagementScope("\\root\\cimv2");
             scope.Connect();
         }
+        /*
         
         public ManagementObjectCollection getMethods(string req)
         {
@@ -29,8 +30,8 @@ namespace IAPD_Battery_lab3
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
             return searcher.Get();
         }
-
-        public ManagementObjectCollection getObject(string req)
+        */
+        public ManagementObjectCollection GetObject(string req)
         {
             ObjectQuery query = new ObjectQuery(req);
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);

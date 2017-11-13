@@ -13,13 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Management;
-using IAPD_Battery_lab3;
+using BatteryInfo;
 using Microsoft.Win32;
 using System.Timers;
 using System.Windows.Threading;
 using System.Runtime.InteropServices;
 
-namespace IAPD_Battery_lab3
+namespace BatteryInfo
 {
 
     
@@ -31,14 +31,14 @@ namespace IAPD_Battery_lab3
         private uint oldFadeTime = 0;
         public MainWindow()
         {
-            oldFadeTime = PowerManagement.getVideoTimeoutDC();
+            oldFadeTime = PowerManagement.GetVideoTimeoutDC();
             InitializeComponent();
-            initText();
-            createTimer();
+            InitText();
+            CreateTimer();
             if (PowerType.Text == "Battery")
             {
                 ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
-                PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+                PowerManagement.SetNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
             }
             else
             {
@@ -50,37 +50,37 @@ namespace IAPD_Battery_lab3
 
         ~MainWindow()
         {
-            PowerManagement.setNewVideoTimeoutDC(oldFadeTime);
+            PowerManagement.SetNewVideoTimeoutDC(oldFadeTime);
         }
 
-        private void createTimer()
+        private void CreateTimer()
         {
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(timerTick);
+            timer.Tick += new EventHandler(TimerTick);
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
         }
 
-        private void timerTick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
-            initText();
+            InitText();
         }
 
 
-        private void initText()
+        private void InitText()
         {
-            PowerType.Text = Battery.getPowerType();
-            Charge.Text = Battery.getChargeLevel();
-            TimeLeft.Text = Battery.getTime();
+            PowerType.Text = Battery.GetPowerType();
+            Charge.Text = Battery.GetChargeLevel();
+            TimeLeft.Text = Battery.GetTime();
         }
 
-        private void fadeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FadeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (PowerType.Text == "Battery")
             {
                 fadeCombo.IsEnabled = true;
                 ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
-                PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+                PowerManagement.SetNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
             }
         }
 
@@ -102,16 +102,16 @@ namespace IAPD_Battery_lab3
         {
             if (e.Mode == PowerModes.StatusChange)
             {
-                if (Battery.getPowerType() == "Battery")
+                if (Battery.GetPowerType() == "Battery")
                 {
                     fadeCombo.IsEnabled = true;
                     ComboBoxItem item = (ComboBoxItem)fadeCombo.SelectedItem;
-                    PowerManagement.setNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
+                    PowerManagement.SetNewVideoTimeoutDC(Convert.ToUInt32((string)item.Content, 10));
                 }
                 else
                 {
                     fadeCombo.IsEnabled = false;
-                    PowerManagement.setNewVideoTimeoutDC(oldFadeTime);
+                    PowerManagement.SetNewVideoTimeoutDC(oldFadeTime);
                 }
             }
         }

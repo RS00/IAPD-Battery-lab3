@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace IAPD_Battery_lab3
+namespace BatteryInfo
 {
     class PowerManagement
     {
@@ -20,7 +20,7 @@ namespace IAPD_Battery_lab3
         [DllImport("powrprof.dll", SetLastError = true)]
         private static extern bool GetActivePwrScheme(out uint puiID);
 
-        public static bool setNewVideoTimeoutDC(uint sec)
+        public static bool SetNewVideoTimeoutDC(uint sec)
         {
             uint id;
             GetActivePwrScheme(out id);
@@ -31,7 +31,7 @@ namespace IAPD_Battery_lab3
             return SetActivePwrScheme(id, IntPtr.Zero, ref pp);
         }
 
-        public static uint getVideoTimeoutDC()
+        public static uint GetVideoTimeoutDC()
         {
             uint id;
             GetActivePwrScheme(out id);

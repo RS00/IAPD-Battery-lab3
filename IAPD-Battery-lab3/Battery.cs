@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using System.Runtime.InteropServices;
-using IAPD_Battery_lab3;
+using BatteryInfo;
 
-namespace IAPD_Battery_lab3
+namespace BatteryInfo
 {
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     struct GLOBAL_POWER_POLICY
@@ -232,14 +232,14 @@ namespace IAPD_Battery_lab3
         );
    
 
-        private static SYSTEM_BATTERY_STATE getSystemBatteryStateStruct()
+        private static SYSTEM_BATTERY_STATE GetSystemBatteryStateStruct()
         {
             IntPtr batteryState = Marshal.AllocCoTaskMem(Marshal.SizeOf(typeof(SYSTEM_BATTERY_STATE)));
             uint status = CallNtPowerInformation(InformationLevel.SystemBatteryState, IntPtr.Zero, 0, batteryState, (uint)Marshal.SizeOf(typeof(SYSTEM_BATTERY_STATE)));
             return (SYSTEM_BATTERY_STATE)Marshal.PtrToStructure(batteryState, typeof(SYSTEM_BATTERY_STATE));
         }
 
-        public static string getChargeLevel()
+        public static string GetChargeLevel()
         {
             /*WMIService wmi = new WMIService();
             ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
@@ -249,18 +249,18 @@ namespace IAPD_Battery_lab3
                 result += obj["EstimatedChargeRemaining"];
             }
             return result;*/
-            SYSTEM_BATTERY_STATE batteryState = getSystemBatteryStateStruct();
+            SYSTEM_BATTERY_STATE batteryState = GetSystemBatteryStateStruct();
             double result = batteryState.RemainingCapacity * 100 / batteryState.MaxCapacity;
             return result.ToString();
 
         }
 
-        public static string getTime()
+        public static string GetTime()
         {
-            if (getPowerType() == "AC")
+            if (GetPowerType() == "AC")
                 return "-";
             WMIService wmi = new WMIService();
-            ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
+            ManagementObjectCollection collection = wmi.GetObject("SELECT * FROM Win32_Battery");
             string result = "";
             foreach (ManagementObject obj in collection)
             {
@@ -272,7 +272,7 @@ namespace IAPD_Battery_lab3
             return TimeSpan.FromMinutes(result).ToString(@"hh\:mm"); */
         }
 
-        public static string getPowerType()
+        public static string GetPowerType()
         {
             /*WMIService wmi = new WMIService();
             ManagementObjectCollection collection = wmi.getObject("SELECT * FROM Win32_Battery");
@@ -287,7 +287,7 @@ namespace IAPD_Battery_lab3
                 return "AC";
             else
                 return "Unknown";*/
-            SYSTEM_BATTERY_STATE batteryState = getSystemBatteryStateStruct();
+            SYSTEM_BATTERY_STATE batteryState = GetSystemBatteryStateStruct();
             if (batteryState.AcOnLine == true)
                 return "AC";
             else

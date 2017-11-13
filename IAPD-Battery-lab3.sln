@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IAPD-Battery-lab3", "IAPD-Battery-lab3\IAPD-Battery-lab3.csproj", "{AF013647-8FC6-42E6-AC6F-21EEDFA88AA1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatteryInfo", "IAPD-Battery-lab3\BatteryInfo.csproj", "{AF013647-8FC6-42E6-AC6F-21EEDFA88AA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

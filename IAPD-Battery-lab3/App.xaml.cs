@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IAPD_Battery_lab3
+namespace BatteryInfo
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

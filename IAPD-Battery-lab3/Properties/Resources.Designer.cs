@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IAPD_Battery_lab3.Properties
+namespace BatteryInfo.Properties
 {
 
 
